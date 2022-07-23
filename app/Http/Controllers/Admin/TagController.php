@@ -15,7 +15,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        return redirect()->route('admin.posts.index');
+        $tags = Tag::all();
+        return view('admin.tags.index', compact('tags'));
     }
 
     /**
@@ -85,8 +86,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        return redirect()->route('admin.tags.index');
     }
 }

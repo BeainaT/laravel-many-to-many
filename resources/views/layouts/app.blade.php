@@ -36,7 +36,12 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('admin.posts.index')}}">Home</a>
+                        </li>
+                        <li>
                             <a class="nav-link" href="{{route('admin.categories.index')}}">Category</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="{{route('admin.tags.index')}}">Tag</a>
                         </li>
                     </ul>
 
