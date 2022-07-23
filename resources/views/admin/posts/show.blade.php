@@ -16,6 +16,12 @@
                             <span>{{$post->category->name}}</span>
                         @endif
                     </div>
+                    <div>
+                        @if ($post->tag)
+                            <h5>tag associati</h5>
+                            <span>{{$post->tag->name}}</span>
+                        @endif
+                    </div>
                     <hr>
                     <div>
                         <a href="{{route('admin.posts.index')}}" class="btn btn-success">Tutti i post</a>

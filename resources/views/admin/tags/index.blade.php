@@ -15,6 +15,7 @@
                     <table class="table">
                         <thead>
                           <tr>
+                            <th scope="col">#</th>
                             <th scope="col">Nome</th>
                             <th scope="col">Slug</th>
                             <th scope="col">Azione</th>
@@ -23,11 +24,12 @@
                         <tbody>
                           @foreach($tags as $tag)
                           <tr>
+                            <td>{{$tag->id}}</td>
                             <td>{{$tag->name}}</td>
                             <td>{{$tag->slug}}</td>
                             <td>
-                              {{-- <a href="{{route('admin.tags.show', $tag->id)}}" class="btn">Visualizza</a>
-                              <a href="{{route('admin.tags.edit', $tag->id)}}" class="btn">Modifica</a> --}}
+                              <a href="{{route('admin.tags.show', $tag->id)}}" class="btn">Visualizza</a>
+                              <a href="{{route('admin.tags.edit', $tag->id)}}" class="btn">Modifica</a>
                               <form action="{{route('admin.tags.destroy', $tag->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')

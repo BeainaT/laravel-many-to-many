@@ -59,7 +59,11 @@ class PostController extends Controller
         }
         $newPost->slug = $slug;
 
-        $newPost->is_published = isset($data['is_published']); 
+        $newPost->is_published = isset($data['is_published']);
+
+        if(isset($data['tags'])) {
+            $newPost->tags()->sync($data['tags']);
+        }
         
         $newPost->save();
         return redirect()->route('admin.posts.show', $newPost->id);
@@ -85,8 +89,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
+        $tags = Tag::all();
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**

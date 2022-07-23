@@ -43,7 +43,7 @@ class TagController extends Controller
         $newTag->slug = Str::of($data['name'])->slug('-');
         $newTag->save();
 
-        return redirect()->route('admin.posts.create');
+        return redirect()->route('admin.tags.index');
     }
 
     /**
@@ -52,9 +52,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tag $tag)
     {
-        //
+        return view('admin.tags.show', compact('tag'));
     }
 
     /**
@@ -63,9 +63,9 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tag $tag)
     {
-        //
+        return view('admin.tags.edit', compact('tag'));
     }
 
     /**
@@ -75,9 +75,14 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Tag $tag)
     {
-        //
+        $data = $request->all();
+        $tag->name = $data['name'];
+        $tag->slug = Str::of($tag->name)->slug('-');
+        $tag->save();
+
+        return redirect()->route('admin.tags.index');
     }
 
     /**

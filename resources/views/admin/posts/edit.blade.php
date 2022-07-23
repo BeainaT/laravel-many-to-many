@@ -34,6 +34,12 @@
               @endforeach
           </select>
         </div>
+        @foreach ($tags as $tag)
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="{{$tag->slug}}" value="{{$tag->id}}">
+            <label class="form-check-label" for="{{$tag->slug}}">{{$tag->name}}</label>
+          </div>            
+        @endforeach
         <div class="form-group">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" id="published" name="is_published">
