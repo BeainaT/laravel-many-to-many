@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
+use App\Tag;
 class TagController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        return redirect()->route('admin.posts.index');
     }
 
     /**
@@ -24,7 +25,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tags.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $newTag = new Tag();
+        $newTag->name = $data['name'];
+        $newTag->slug = Str::of($data['name'])->slug('-');
+        $newTag->save();
+
+        return redirect()->route('admin.posts.create');
     }
 
     /**
