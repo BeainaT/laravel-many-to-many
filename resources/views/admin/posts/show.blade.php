@@ -12,14 +12,18 @@
                     </div>
                     <div>
                         @if ($post->category)
-                            <h5>categorie associate</h5>
+                            <h5>categorie associate:</h5>
                             <span>{{$post->category->name}}</span>
                         @endif
                     </div>
                     <div>
-                        @if ($post->tag)
-                            <h5>tag associati</h5>
-                            <span>{{$post->tag->name}}</span>
+                        @if(count($post->tags) > 0)
+                            <h5>tags associati:</h5>
+                            <ul>
+                                @foreach ($post->tags as $tag)                    
+                                    <li>{{$tag->name}}</li>
+                                @endforeach
+                            </ul>
                         @endif
                     </div>
                     <hr>

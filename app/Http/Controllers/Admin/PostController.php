@@ -47,6 +47,7 @@ class PostController extends Controller
         ]);
 
         $data = $request->all();
+
         $newPost = new Post();
         $newPost->fill($data);        
         
@@ -61,11 +62,11 @@ class PostController extends Controller
 
         $newPost->is_published = isset($data['is_published']);
 
+        
+        $newPost->save();
         if(isset($data['tags'])) {
             $newPost->tags()->sync($data['tags']);
         }
-        
-        $newPost->save();
         return redirect()->route('admin.posts.show', $newPost->id);
     }
 
